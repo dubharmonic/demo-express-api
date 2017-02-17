@@ -1,12 +1,16 @@
 {
-  "name": "express-api-demo",
-  "version": "1.0.0",
+  "name": "demo-server-express-restful-api",
+  "version": "0.0.1",
   "description": "RESTful API demo to be used to demonstrate front-end frameworks.",
   "author": "Eric Sorenson",
+  "private": true,
   "dependencies": {
     "body-parser": "1.16.1",
     "coffee-script": "1.12.3",
     "express": "4.14.1",
     "lodash": "4.17.4"
+  },
+  "scripts": {
+    "server": "npm prune; npm install; ./node_modules/.bin/coffee server.coffee;"
   }
 }
