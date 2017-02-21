@@ -348,6 +348,7 @@ idCounter = 50
 express = require 'express'
 bodyParser = require 'body-parser'
 _ = require 'lodash'
+data = require './data.coffee'
 
 app = express()
 app.use bodyParser.json()
@@ -362,6 +363,25 @@ app.options '*', (req, res) ->
   res.set 'Access-Control-Allow-Headers', 'accept, content-type'
   res.set 'Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS, PATCH'
   res.send()
+
+# ---------------------------------------------------------------------
+
+app.get '/formats', (req, res) ->
+  res.send data.formats
+
+# ---------------------------------------------------------------------
+
+app.get '/albums', (req, res) ->
+  res.send data.albums
+
+app.get '/albums/:albumId', (req, res) ->
+  res.send _.find data.albums, id: parseInt req.params.albumId
+
+app.put '/albums/:albumId', (req, res) ->
+  data.albums[_.findIndex data.albums, id: parseInt req.params.albumId] = req.body
+  res.sendStatus 204
+
+# ---------------------------------------------------------------------
 
 # Get all
 app.get '/users', (req, res) ->
@@ -389,4 +409,4 @@ app.delete '/users/:userId', (req, res) ->
   _.remove users, id: parseInt req.params.userId
   res.sendStatus 204
 
-app.listen 9002
+app.listen 8081
