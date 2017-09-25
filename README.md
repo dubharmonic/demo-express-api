@@ -1,3 +1,3 @@
 # demo-server-express-restful-api
 
-    npm run server
+    yarn dev

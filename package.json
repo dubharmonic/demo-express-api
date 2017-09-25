@@ -5,12 +5,27 @@
   "author": "Eric Sorenson",
   "private": true,
   "dependencies": {
-    "body-parser": "1.16.1",
-    "coffee-script": "1.12.3",
-    "express": "4.14.1",
-    "lodash": "4.17.4"
+    "body-parser": "^1.18.2",
+    "cookie-session": "^1.3.1",
+    "express": "^4.15.4",
+    "helmet": "^3.8.1",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "eslint": "^4.7.2",
+    "nodemon": "^1.12.1"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 6
+    },
+    "env": {
+      "node": true
+    },
+    "extends": "eslint:recommended"
   },
   "scripts": {
-    "server": "npm prune; npm install; ./node_modules/.bin/coffee server.coffee;"
+    "dev": "yarn; ./node_modules/.bin/nodemon ./src/server.es6;",
+    "lint": "./node_modules/.bin/eslint ./src/**/*.es6"
   }
 }
