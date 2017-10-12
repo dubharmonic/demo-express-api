@@ -4,7 +4,8 @@ const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize({ url: process.env.DATABASE_URL, dialect: 'postgres', logging: false });
 
-sequelize.authenticate().catch(() => {
+sequelize.authenticate().catch(error => {
+  console.log("Can't connect to database", error);
   process.exit(1);
 });
 
