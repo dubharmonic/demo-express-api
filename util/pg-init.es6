@@ -1,0 +1,31 @@
+'use strict';
+
+const Sequelize = require('sequelize');
+
+const sequelize = new Sequelize({ url: process.env.DATABASE_URL, dialect: 'postgres', logging: false });
+
+sequelize.authenticate().catch(() => {
+  process.exit(1);
+});
+
+sequelize
+  .query('DROP TABLE people;')
+  .then(() => {
+    console.log('Table dropped!');
+    sequelize
+      .query(
+        'CREATE TABLE people ( id bigserial primary key, first_name varchar(10) NOT NULL, last_name varchar(10) NOT NULL, created timestamp NOT NULL, updated timestamp NOT NULL );'
+      )
+      .then(() => {
+        console.log('Table created!');
+        process.exit(0);
+      })
+      .catch(error => {
+        console.log('Problem creating table', error);
+        process.exit(1);
+      });
+  })
+  .catch(error => {
+    console.log('Problem dropping table', error);
+    process.exit(1);
+  });
