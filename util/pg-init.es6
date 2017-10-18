@@ -1,30 +1,30 @@
 'use strict';
 
-const { Client } = require('pg');
+// const { Client } = require('pg');
+//
+// const client = new Client({
+//   connectionString: process.env.DATABASE_URL
+// });
+// client.connect();
+//
+// client.query('SELECT NOW()', (err, res) => {
+//   console.log(err, res);
+//   client.end();
+// });
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL
-});
-client.connect();
+const Sequelize = require('sequelize');
 
-client.query('SELECT NOW()', (err, res) => {
-  console.log(err, res);
-  client.end();
-});
+const sequelize = new Sequelize({ url: process.env.DATABASE_URL, dialect: 'postgres', logging: false });
 
-// const Sequelize = require('sequelize');
-
-// const sequelize = new Sequelize({ url: process.env.DATABASE_URL, dialect: 'postgres', logging: false });
-
-// sequelize
-//   .authenticate()
-//   .then(() => {
-//     console.log('DB Connected');
-//   })
-//   .catch(error => {
-//     console.log("Can't connect to database", error);
-//     process.exit(1);
-//   });
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('DB Connected');
+  })
+  .catch(error => {
+    console.log("Can't connect to database", error);
+    process.exit(1);
+  });
 
 // sequelize
 //   .query('DROP TABLE people;')
