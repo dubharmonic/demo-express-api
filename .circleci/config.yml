@@ -16,10 +16,10 @@ jobs:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
       - run:
-        command: sudo -u postgres psql -p 5433 -c "create user ubuntu with password ‘ubuntu’;”
-        command: sudo -u postgres psql -p 5433 -c "alter user ubuntu with superuser;"
-        command: sudo -u postgres psql -p 5433 -c "create database test;"
-        command: yarn install
+          command: sudo -u postgres psql -p 5433 -c "create user ubuntu with password ‘ubuntu’;”
+          command: sudo -u postgres psql -p 5433 -c "alter user ubuntu with superuser;"
+          command: sudo -u postgres psql -p 5433 -c "create database test;"
+          command: yarn install
       - save_cache:
           paths:
             - node_modules
