@@ -14,7 +14,12 @@ client.query('SELECT NOW()', (err, res) => {
 
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize({ url: process.env.DATABASE_URL, dialect: 'postgres', logging: false });
+const sequelize = new Sequelize({
+  url: process.env.DATABASE_URL,
+  username: process.env.DATABASE_USERNAME,
+  dialect: 'postgres',
+  logging: false
+});
 
 sequelize
   .query(
