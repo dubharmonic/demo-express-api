@@ -1,16 +1,16 @@
 'use strict';
 
-// const { Client } = require('pg');
-//
-// const client = new Client({
-//   connectionString: process.env.DATABASE_URL
-// });
-// client.connect();
-//
-// client.query('SELECT NOW()', (err, res) => {
-//   console.log(err, res);
-//   client.end();
-// });
+const { Client } = require('pg');
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL
+});
+client.connect();
+
+client.query('SELECT NOW()', (err, res) => {
+  console.log(err, res);
+  client.end();
+});
 
 const Sequelize = require('sequelize');
 
