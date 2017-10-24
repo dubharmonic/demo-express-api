@@ -12,22 +12,22 @@ client.query('SELECT NOW()', (err, res) => {
   client.end();
 });
 
-const Sequelize = require('sequelize');
-
-const sequelize = new Sequelize({ url: process.env.DATABASE_URL, dialect: 'postgres', logging: false });
-
-sequelize
-  .query(
-    'CREATE TABLE people ( id bigserial primary key, first_name varchar(10) NOT NULL, last_name varchar(10) NOT NULL, created timestamp NOT NULL, updated timestamp NOT NULL );'
-  )
-  .then(() => {
-    console.log('Table created!');
-    process.exit(0);
-  })
-  .catch(error => {
-    console.log('Problem creating table', error);
-    process.exit(1);
-  });
+// const Sequelize = require('sequelize');
+//
+// const sequelize = new Sequelize({ url: process.env.DATABASE_URL, dialect: 'postgres', logging: false });
+//
+// sequelize
+//   .query(
+//     'CREATE TABLE people ( id bigserial primary key, first_name varchar(10) NOT NULL, last_name varchar(10) NOT NULL, created timestamp NOT NULL, updated timestamp NOT NULL );'
+//   )
+//   .then(() => {
+//     console.log('Table created!');
+//     process.exit(0);
+//   })
+//   .catch(error => {
+//     console.log('Problem creating table', error);
+//     process.exit(1);
+//   });
 
 // sequelize
 //   .authenticate()
