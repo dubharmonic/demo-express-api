@@ -18,7 +18,7 @@ jobs:
       - run:
           command: sudo -u postgres psql -p 5433 -c "create user ubuntu with password ‘ubuntu’;”
           command: sudo -u postgres psql -p 5433 -c "alter user ubuntu with superuser;"
-          command: sudo -u postgres psql -p 5433 -c "create database test;"
+          command: sudo -u postgres psql -p 5433 -c "create database circle_test;"
           command: yarn install
       - save_cache:
           paths:
