@@ -7,7 +7,7 @@ jobs:
         environment:
           POSTGRES_USER: ubuntu
           POSTGRES_DB: circle_test
-          POSTGRES_PASSWORD: ""
+          POSTGRES_PASSWORD: ubuntu
     working_directory: ~/repo
     steps:
       - checkout
@@ -16,9 +16,6 @@ jobs:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
       - run:
-          command: sudo -u postgres psql -p 5433 -c "create user ubuntu with password ‘ubuntu’;”
-          command: sudo -u postgres psql -p 5433 -c "alter user ubuntu with superuser;"
-          command: sudo -u postgres psql -p 5433 -c "create database circle_test;"
           command: yarn install
       - save_cache:
           paths:
