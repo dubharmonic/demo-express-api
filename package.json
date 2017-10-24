@@ -32,14 +32,18 @@
       "mocha": true
     },
     "extends": "eslint:recommended",
-    "plugins": ["mocha"],
+    "plugins": [
+      "mocha"
+    ],
     "rules": {
       "mocha/no-exclusive-tests": "error",
       "no-console": "off"
     }
   },
   "nyc": {
-    "extension": [".es6"]
+    "extension": [
+      ".es6"
+    ]
   },
   "scripts": {
     "coverage": "node ./util/pg-init.es6; nyc mocha ./test/**/*.es6",
