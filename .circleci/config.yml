@@ -11,16 +11,8 @@ jobs:
           POSTGRES_PASSWORD: ""
     steps:
       - checkout
-      # - restore_cache:
-      #     keys:
-      #     - v1-dependencies-{{ checksum "package.json" }}
-      #     - v1-dependencies-
       - run:
           command: yarn
-      # - save_cache:
-      #     paths:
-      #       - node_modules
-      #     key: v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: Set up DB
           command: yarn init-db; yarn coverage;
