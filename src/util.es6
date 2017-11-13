@@ -4,12 +4,13 @@ const Sequelize = require('sequelize');
 
 const util = {};
 
-const sequelizeConnection = new Sequelize({
-  url: process.env.DATABASE_URL,
-  username: 'ubuntu',
-  dialect: 'postgres',
-  logging: false
-});
+// const sequelizeConnection = new Sequelize({
+//   url: process.env.DATABASE_URL,
+//   dialect: 'postgres',
+//   logging: false
+// });
+
+const sequelizeConnection = new Sequelize(process.env.DATABASE_URL);
 
 util.getSequelizeConnection = () => {
   return sequelizeConnection;
