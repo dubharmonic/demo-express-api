@@ -4,14 +4,10 @@ const Sequelize = require('sequelize');
 
 const util = {};
 
-const sequelizeConnection = new Sequelize(process.env.DATABASE_URL);
-
-util.getSequelizeConnection = () => {
-  return sequelizeConnection;
-};
+util.sequelizeConnection = new Sequelize(process.env.DATABASE_URL);
 
 util.initializeDataBase = () => {
-  sequelizeConnection
+  util.sequelizeConnection
     .query(
       'CREATE TABLE IF NOT EXISTS people ( id bigserial primary key, first_name varchar(10) NOT NULL, last_name varchar(10) NOT NULL, created timestamp NOT NULL, updated timestamp NOT NULL );'
     )

@@ -2,15 +2,11 @@
 
 const Sequelize = require('sequelize');
 
-const sequelizeConnection = new Sequelize({
-  url: process.env.DATABASE_URL,
-  dialect: 'postgres',
-  logging: false
-});
+const util = require('./util.es6');
 
 const models = {};
 
-models.Person = sequelizeConnection.define('people', {
+models.Person = util.sequelizeConnection.define('people', {
   firstName: {
     type: Sequelize.STRING,
     allowNull: false,
