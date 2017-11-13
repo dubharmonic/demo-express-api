@@ -6,6 +6,8 @@ const server = require('../src/server.es6');
 
 const personFactory = factory({ firstName: 'Jim', lastName: 'Kirk' });
 
+let personId;
+
 describe('Person RESTful endpoints', () => {
   describe('POST', () => {
     it('should create a single person', done => {
@@ -13,7 +15,12 @@ describe('Person RESTful endpoints', () => {
         .post('/people')
         .send(personFactory.create())
         .expect('Content-Type', /json/)
-        .expect(201, done);
+        .expect(201)
+        .then(response => {
+          personId = response.body.id;
+          done();
+        })
+        .catch(done);
     });
 
     it('should fail to create a person if firstName is missing', done => {
@@ -22,7 +29,7 @@ describe('Person RESTful endpoints', () => {
         .send(personFactory.create({ firstName: null }))
         .expect(400)
         .then(response => {
-          assert.equal(response.body[0].message, 'firstName cannot be null');
+          assert.equal(response.body[0].message, 'people.firstName cannot be null');
           done();
         })
         .catch(done);
@@ -58,7 +65,7 @@ describe('Person RESTful endpoints', () => {
         .send(personFactory.create({ firstName: null }))
         .expect(400)
         .then(response => {
-          assert.equal(response.body[0].message, 'firstName cannot be null');
+          assert.equal(response.body[0].message, 'people.firstName cannot be null');
           done();
         })
         .catch(done);
@@ -92,11 +99,11 @@ describe('Person RESTful endpoints', () => {
   describe('GET', () => {
     it('should receive a single person', done => {
       request(server)
-        .get('/people/1')
+        .get('/people/' + personId)
         .expect('Content-Type', /json/)
         .expect(200)
         .then(response => {
-          assert.equal(response.body.id, 1);
+          assert.equal(response.body.id, personId);
           assert.equal(response.body.firstName, 'Jim');
           done();
         })
@@ -132,7 +139,7 @@ describe('Person RESTful endpoints', () => {
   describe('PUT', () => {
     it('should update a single person', done => {
       request(server)
-        .put('/people/1')
+        .put('/people/' + personId)
         .send(personFactory.create({ firstName: 'Jimmy' }))
         .expect('Content-Type', /json/)
         .expect(200, done);
@@ -154,11 +161,11 @@ describe('Person RESTful endpoints', () => {
 
     it('should fail to update a person if firstName is missing', done => {
       request(server)
-        .put('/people/1')
+        .put('/people/' + personId)
         .send(personFactory.create({ firstName: null }))
         .expect(400)
         .then(response => {
-          assert.equal(response.body[0].message, 'firstName cannot be null');
+          assert.equal(response.body[0].message, 'people.firstName cannot be null');
           done();
         })
         .catch(done);
@@ -166,7 +173,7 @@ describe('Person RESTful endpoints', () => {
 
     it('should fail to update a person if firstName is too short', done => {
       request(server)
-        .put('/people/1')
+        .put('/people/' + personId)
         .send(personFactory.create({ firstName: 'A' }))
         .expect(400)
         .then(response => {
@@ -178,7 +185,7 @@ describe('Person RESTful endpoints', () => {
 
     it('should fail to update a person if firstName is too long', done => {
       request(server)
-        .put('/people/1')
+        .put('/people/' + personId)
         .send(personFactory.create({ firstName: '01234567890' }))
         .expect(400)
         .then(response => {
@@ -190,11 +197,11 @@ describe('Person RESTful endpoints', () => {
 
     it('should fail to update a person if lastName is missing', done => {
       request(server)
-        .put('/people/1')
+        .put('/people/' + personId)
         .send(personFactory.create({ lastName: null }))
         .expect(400)
         .then(response => {
-          assert.equal(response.body[0].message, 'lastName cannot be null');
+          assert.equal(response.body[0].message, 'people.lastName cannot be null');
           done();
         })
         .catch(done);
@@ -202,7 +209,7 @@ describe('Person RESTful endpoints', () => {
 
     it('should fail to update a person if lastName is too short', done => {
       request(server)
-        .put('/people/1')
+        .put('/people/' + personId)
         .send(personFactory.create({ lastName: 'A' }))
         .expect(400)
         .then(response => {
@@ -214,7 +221,7 @@ describe('Person RESTful endpoints', () => {
 
     it('should fail to update a person if lastName is too long', done => {
       request(server)
-        .put('/people/1')
+        .put('/people/' + personId)
         .send(personFactory.create({ lastName: '01234567890' }))
         .expect(400)
         .then(response => {
@@ -228,21 +235,8 @@ describe('Person RESTful endpoints', () => {
   describe('DELETE', () => {
     it('should delete a single person', done => {
       request(server)
-        .delete('/people/1')
+        .delete('/people/' + personId)
         .expect(204, done);
-    });
-
-    it('should have an empty list of people', done => {
-      request(server)
-        .get('/people')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200)
-        .then(response => {
-          assert.equal(response.body.length, 0);
-          done();
-        })
-        .catch(done);
     });
 
     it('should fail to delete a single person when the person is not found', done => {

@@ -32,23 +32,19 @@
       "mocha": true
     },
     "extends": "eslint:recommended",
-    "plugins": [
-      "mocha"
-    ],
+    "plugins": ["mocha"],
     "rules": {
       "mocha/no-exclusive-tests": "error",
       "no-console": "off"
     }
   },
   "nyc": {
-    "extension": [
-      ".es6"
-    ]
+    "extension": [".es6"]
   },
   "scripts": {
-    "coverage": "node ./util/pg-init.es6; nyc mocha ./test/**/*.es6",
+    "coverage": "nyc mocha ./test/**/*.es6",
     "dev": "yarn; nodemon ./src/server.es6;",
-    "init-db": "node ./util/pg-init.es6",
+    "init-db": "node -e 'require(\"./src/util.es6\").initializeDataBase()'",
     "lint": "eslint ./src/**/*.es6 ./test/**/*.es6",
     "snyk": "snyk test"
   }
