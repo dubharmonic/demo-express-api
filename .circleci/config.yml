@@ -23,5 +23,5 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: Set up DB
-          command: echo DATABASE_URL
           command: yarn init-db
+          command: yarn coverage
