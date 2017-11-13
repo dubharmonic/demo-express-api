@@ -6,6 +6,7 @@ const util = {};
 
 const sequelizeConnection = new Sequelize({
   url: process.env.DATABASE_URL,
+  username: 'ubuntu',
   dialect: 'postgres',
   logging: false
 });
