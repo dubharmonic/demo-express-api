@@ -6,7 +6,7 @@ const util = {};
 
 util.sequelizeConnection = new Sequelize(process.env.DATABASE_URL);
 
-util.initializeDataBase = () => {
+util.initializeDatabase = () => {
   util.sequelizeConnection
     .query(
       'CREATE TABLE IF NOT EXISTS people ( id bigserial primary key, first_name varchar(10) NOT NULL, last_name varchar(10) NOT NULL, created timestamp NOT NULL, updated timestamp NOT NULL );'

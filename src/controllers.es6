@@ -5,11 +5,10 @@ const models = require('./models.es6');
 const controllers = {};
 
 controllers.createPerson = (req, res) => {
-  models.Person
-    .create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName
-    })
+  models.Person.create({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName
+  })
     .then(person => {
       res.status(201).json(person);
     })
@@ -17,18 +16,17 @@ controllers.createPerson = (req, res) => {
       if (error.name === 'SequelizeValidationError') {
         res.status(400).json(error.errors);
       } else {
-        res.status(500).json(error);
+        res.status(500).send();
       }
     });
 };
 
 controllers.getPerson = (req, res) => {
-  models.Person
-    .find({
-      where: {
-        id: req.params.id
-      }
-    })
+  models.Person.find({
+    where: {
+      id: req.params.id
+    }
+  })
     .then(person => {
       if (person) {
         res.status(200).json(person);
@@ -36,18 +34,17 @@ controllers.getPerson = (req, res) => {
         res.status(404).send();
       }
     })
-    .catch(error => {
-      res.status(500).json(error);
+    .catch(() => {
+      res.status(500).send();
     });
 };
 
 controllers.updatePerson = (req, res) => {
-  models.Person
-    .findOne({
-      where: {
-        id: req.params.id
-      }
-    })
+  models.Person.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
     .then(person => {
       if (person) {
         person.firstName = req.body.firstName;
@@ -61,25 +58,24 @@ controllers.updatePerson = (req, res) => {
             if (error.name === 'SequelizeValidationError') {
               res.status(400).json(error.errors);
             } else {
-              res.status(500).json(error);
+              res.status(500).send();
             }
           });
       } else {
         res.status(404).send();
       }
     })
-    .catch(error => {
-      res.status(500).json(error);
+    .catch(() => {
+      res.status(500).send();
     });
 };
 
 controllers.deletePerson = (req, res) => {
-  models.Person
-    .findOne({
-      where: {
-        id: req.params.id
-      }
-    })
+  models.Person.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
     .then(person => {
       if (person) {
         person
@@ -87,26 +83,25 @@ controllers.deletePerson = (req, res) => {
           .then(() => {
             res.status(204).send();
           })
-          .catch(error => {
-            res.status(500).json(error);
+          .catch(() => {
+            res.status(500).send();
           });
       } else {
         res.status(404).send();
       }
     })
-    .catch(error => {
-      res.status(500).json(error);
+    .catch(() => {
+      res.status(500).send();
     });
 };
 
 controllers.getPeople = (req, res) => {
-  models.Person
-    .findAll()
+  models.Person.findAll()
     .then(people => {
       res.status(200).json(people);
     })
-    .catch(error => {
-      res.status(500).json(error);
+    .catch(() => {
+      res.status(500).send();
     });
 };
 

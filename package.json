@@ -44,7 +44,7 @@
   "scripts": {
     "coverage": "nyc mocha ./test/**/*.es6",
     "dev": "yarn; nodemon ./src/server.es6;",
-    "init-db": "node -e 'require(\"./src/util.es6\").initializeDataBase()'",
+    "init-db": "node -e 'require(\"./src/util.es6\").initializeDatabase()'",
     "lint": "eslint ./src/**/*.es6 ./test/**/*.es6",
     "snyk": "snyk test"
   }
