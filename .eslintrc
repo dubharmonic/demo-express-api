@@ -1,0 +1,20 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 6
+      },
+      "env": {
+        "node": true,
+        "mocha": true
+      },
+      "extends": ["airbnb-base",
+                  "plugin:import/errors",
+                  "plugin:import/warnings"],
+      "plugins": [
+        "import",
+        "mocha"
+      ],
+      "rules": {
+        "mocha/no-exclusive-tests": "error",
+        "no-console": "off"
+      }
+}
