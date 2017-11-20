@@ -14,7 +14,9 @@
     "unionized": "^4.12.0"
   },
   "devDependencies": {
-    "eslint": "^4.7.2",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-mocha": "^4.11.0",
     "istanbul": "^0.4.0",
     "mocha": "^3.5.3",
@@ -23,23 +25,10 @@
     "snyk": "1.42.4",
     "supertest": "^3.0.0"
   },
-  "eslintConfig": {
-    "parserOptions": {
-      "ecmaVersion": 6
-    },
-    "env": {
-      "node": true,
-      "mocha": true
-    },
-    "extends": "eslint:recommended",
-    "plugins": ["mocha"],
-    "rules": {
-      "mocha/no-exclusive-tests": "error",
-      "no-console": "off"
-    }
-  },
   "nyc": {
-    "extension": [".es6"]
+    "extension": [
+      ".es6"
+    ]
   },
   "scripts": {
     "coverage": "nyc mocha ./test/**/*.es6",
