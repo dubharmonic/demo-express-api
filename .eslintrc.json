@@ -1,0 +1,17 @@
+{
+  "rules": {
+    "comma-dangle": ["error", "never"],
+    "arrow-parens": ["error", "as-needed"],
+    "mocha/no-exclusive-tests": "error",
+    "no-console": "off"
+  },
+  "env": {
+    "node": true,
+    "mocha": true
+  },
+  "extends": "eslint:recommended",
+  "plugins": ["mocha"],
+  "parserOptions": {
+    "ecmaVersion": 6
+  }
+}

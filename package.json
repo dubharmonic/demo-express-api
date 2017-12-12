@@ -1,20 +1,24 @@
 {
   "name": "demo-server-express-restful-api",
-  "version": "0.0.1",
-  "description": "RESTful API demo to be used to demonstrate front-end frameworks.",
+  "version": "0.1.0",
+  "description":
+    "RESTful API demo to be used to demonstrate front-end frameworks.",
   "author": "Eric Sorenson",
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.2",
+    "eslint": "^4.7.2",
     "express": "^4.15.4",
     "helmet": "^3.8.1",
     "lodash": "^4.17.4",
     "pg": "^7.3.0",
+    "prop-types": "^15.6.0",
+    "react-router-props": "^1.0.2",
     "sequelize": "^4.11.1",
     "unionized": "^4.12.0"
   },
   "devDependencies": {
-    "eslint": "^4.7.2",
+    "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-mocha": "^4.11.0",
     "istanbul": "^0.4.0",
     "mocha": "^3.5.3",
@@ -23,29 +27,11 @@
     "snyk": "1.42.4",
     "supertest": "^3.0.0"
   },
-  "eslintConfig": {
-    "parserOptions": {
-      "ecmaVersion": 6
-    },
-    "env": {
-      "node": true,
-      "mocha": true
-    },
-    "extends": "eslint:recommended",
-    "plugins": ["mocha"],
-    "rules": {
-      "mocha/no-exclusive-tests": "error",
-      "no-console": "off"
-    }
-  },
-  "nyc": {
-    "extension": [".es6"]
-  },
   "scripts": {
-    "coverage": "nyc mocha ./test/**/*.es6",
-    "dev": "yarn; nodemon ./src/server.es6;",
-    "init-db": "node -e 'require(\"./src/util.es6\").initializeDatabase()'",
-    "lint": "eslint ./src/**/*.es6 ./test/**/*.es6",
+    "coverage": "nyc mocha ./test/**/*.js",
+    "dev": "nodemon ./src/server.js;",
+    "init-db": "node -e 'require(\"./src/util.js\").initializeDatabase()'",
+    "lint": "eslint ./src/**/*.js ./test/**/*.js",
     "snyk": "snyk test"
   }
 }

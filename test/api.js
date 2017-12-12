@@ -2,7 +2,7 @@ const assert = require('assert');
 const request = require('supertest');
 const factory = require('unionized').factory;
 
-const server = require('../src/server.es6');
+const server = require('../src/server');
 
 const personFactory = factory({ firstName: 'Jim', lastName: 'Kirk' });
 
@@ -29,7 +29,10 @@ describe('Person RESTful endpoints', () => {
         .send(personFactory.create({ firstName: null }))
         .expect(400)
         .then(response => {
-          assert.equal(response.body[0].message, 'people.firstName cannot be null');
+          assert.equal(
+            response.body[0].message,
+            'people.firstName cannot be null'
+          );
           done();
         })
         .catch(done);
@@ -41,7 +44,10 @@ describe('Person RESTful endpoints', () => {
         .send(personFactory.create({ firstName: 'A' }))
         .expect(400)
         .then(response => {
-          assert.equal(response.body[0].message, 'firstName must be between 2 and 10 characters in length');
+          assert.equal(
+            response.body[0].message,
+            'firstName must be between 2 and 10 characters in length'
+          );
           done();
         })
         .catch(done);
@@ -53,7 +59,10 @@ describe('Person RESTful endpoints', () => {
         .send(personFactory.create({ firstName: '01234567890' }))
         .expect(400)
         .then(response => {
-          assert.equal(response.body[0].message, 'firstName must be between 2 and 10 characters in length');
+          assert.equal(
+            response.body[0].message,
+            'firstName must be between 2 and 10 characters in length'
+          );
           done();
         })
         .catch(done);
@@ -65,7 +74,10 @@ describe('Person RESTful endpoints', () => {
         .send(personFactory.create({ firstName: null }))
         .expect(400)
         .then(response => {
-          assert.equal(response.body[0].message, 'people.firstName cannot be null');
+          assert.equal(
+            response.body[0].message,
+            'people.firstName cannot be null'
+          );
           done();
         })
         .catch(done);
@@ -77,7 +89,10 @@ describe('Person RESTful endpoints', () => {
         .send(personFactory.create({ lastName: 'A' }))
         .expect(400)
         .then(response => {
-          assert.equal(response.body[0].message, 'lastName must be between 2 and 10 characters in length');
+          assert.equal(
+            response.body[0].message,
+            'lastName must be between 2 and 10 characters in length'
+          );
           done();
         })
         .catch(done);
@@ -89,7 +104,10 @@ describe('Person RESTful endpoints', () => {
         .send(personFactory.create({ lastName: '01234567890' }))
         .expect(400)
         .then(response => {
-          assert.equal(response.body[0].message, 'lastName must be between 2 and 10 characters in length');
+          assert.equal(
+            response.body[0].message,
+            'lastName must be between 2 and 10 characters in length'
+          );
           done();
         })
         .catch(done);
@@ -117,7 +135,10 @@ describe('Person RESTful endpoints', () => {
         .expect('Content-Type', /json/)
         .expect(200)
         .then(response => {
-          assert.equal(response.body[0].firstName, 'Jim');
+          assert.equal(
+            response.body[response.body.length - 1].firstName,
+            'Jim'
+          );
           done();
         })
         .catch(done);
@@ -165,7 +186,10 @@ describe('Person RESTful endpoints', () => {
         .send(personFactory.create({ firstName: null }))
         .expect(400)
         .then(response => {
-          assert.equal(response.body[0].message, 'people.firstName cannot be null');
+          assert.equal(
+            response.body[0].message,
+            'people.firstName cannot be null'
+          );
           done();
         })
         .catch(done);
@@ -177,7 +201,10 @@ describe('Person RESTful endpoints', () => {
         .send(personFactory.create({ firstName: 'A' }))
         .expect(400)
         .then(response => {
-          assert.equal(response.body[0].message, 'firstName must be between 2 and 10 characters in length');
+          assert.equal(
+            response.body[0].message,
+            'firstName must be between 2 and 10 characters in length'
+          );
           done();
         })
         .catch(done);
@@ -189,7 +216,10 @@ describe('Person RESTful endpoints', () => {
         .send(personFactory.create({ firstName: '01234567890' }))
         .expect(400)
         .then(response => {
-          assert.equal(response.body[0].message, 'firstName must be between 2 and 10 characters in length');
+          assert.equal(
+            response.body[0].message,
+            'firstName must be between 2 and 10 characters in length'
+          );
           done();
         })
         .catch(done);
@@ -201,7 +231,10 @@ describe('Person RESTful endpoints', () => {
         .send(personFactory.create({ lastName: null }))
         .expect(400)
         .then(response => {
-          assert.equal(response.body[0].message, 'people.lastName cannot be null');
+          assert.equal(
+            response.body[0].message,
+            'people.lastName cannot be null'
+          );
           done();
         })
         .catch(done);
@@ -213,7 +246,10 @@ describe('Person RESTful endpoints', () => {
         .send(personFactory.create({ lastName: 'A' }))
         .expect(400)
         .then(response => {
-          assert.equal(response.body[0].message, 'lastName must be between 2 and 10 characters in length');
+          assert.equal(
+            response.body[0].message,
+            'lastName must be between 2 and 10 characters in length'
+          );
           done();
         })
         .catch(done);
@@ -225,7 +261,10 @@ describe('Person RESTful endpoints', () => {
         .send(personFactory.create({ lastName: '01234567890' }))
         .expect(400)
         .then(response => {
-          assert.equal(response.body[0].message, 'lastName must be between 2 and 10 characters in length');
+          assert.equal(
+            response.body[0].message,
+            'lastName must be between 2 and 10 characters in length'
+          );
           done();
         })
         .catch(done);

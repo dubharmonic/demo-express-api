@@ -1,6 +1,4 @@
-'use strict';
-
-const models = require('./models.es6');
+const models = require('./models');
 
 const controllers = {};
 

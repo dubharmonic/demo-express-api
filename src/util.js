@@ -1,8 +1,11 @@
-'use strict';
-
 const Sequelize = require('sequelize');
 
 const util = {};
+
+if (!process.env.DATABASE_URL) {
+  console.error('Please provide a database URL!');
+  process.exit(1);
+}
 
 util.sequelizeConnection = new Sequelize(process.env.DATABASE_URL);
 

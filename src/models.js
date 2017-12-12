@@ -1,8 +1,6 @@
-'use strict';
-
 const Sequelize = require('sequelize');
 
-const util = require('./util.es6');
+const util = require('./util');
 
 const models = {};
 
