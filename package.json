@@ -1,8 +1,7 @@
 {
   "name": "demo-server-express-restful-api",
   "version": "0.1.0",
-  "description":
-    "RESTful API demo to be used to demonstrate front-end frameworks.",
+  "description": "RESTful API demo to be used to demonstrate front-end frameworks.",
   "author": "Eric Sorenson",
   "private": true,
   "dependencies": {
