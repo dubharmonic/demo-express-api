@@ -8,13 +8,13 @@ controllers.createPerson = (req, res) => {
     lastName: req.body.lastName
   })
     .then(person => {
-      res.status(201).json(person);
+      return res.status(201).json(person);
     })
     .catch(error => {
       if (error.name === 'SequelizeValidationError') {
-        res.status(400).json(error.errors);
+        return res.status(400).json(error.errors);
       } else {
-        res.status(500).send();
+        return res.status(500).send();
       }
     });
 };
@@ -27,17 +27,18 @@ controllers.getPerson = (req, res) => {
   })
     .then(person => {
       if (person) {
-        res.status(200).json(person);
+        return res.status(200).json(person);
       } else {
-        res.status(404).send();
+        return res.status(404).send();
       }
     })
     .catch(() => {
-      res.status(500).send();
+      return res.status(500).send();
     });
 };
 
 controllers.updatePerson = (req, res) => {
+  console.log('hello?');
   models.Person.findOne({
     where: {
       id: req.params.id
@@ -50,21 +51,21 @@ controllers.updatePerson = (req, res) => {
         person
           .save()
           .then(() => {
-            res.status(200).json(person);
+            return res.status(200).json(person);
           })
           .catch(error => {
             if (error.name === 'SequelizeValidationError') {
               res.status(400).json(error.errors);
             } else {
-              res.status(500).send();
+              return res.status(500).send();
             }
           });
       } else {
-        res.status(404).send();
+        return res.status(404).send();
       }
     })
     .catch(() => {
-      res.status(500).send();
+      return res.status(500).send();
     });
 };
 
@@ -79,27 +80,27 @@ controllers.deletePerson = (req, res) => {
         person
           .destroy()
           .then(() => {
-            res.status(204).send();
+            return res.status(204).send();
           })
           .catch(() => {
-            res.status(500).send();
+            return res.status(500).send();
           });
       } else {
-        res.status(404).send();
+        return res.status(404).send();
       }
     })
     .catch(() => {
-      res.status(500).send();
+      return res.status(500).send();
     });
 };
 
 controllers.getPeople = (req, res) => {
   models.Person.findAll()
     .then(people => {
-      res.status(200).json(people);
+      return res.status(200).json(people);
     })
     .catch(() => {
-      res.status(500).send();
+      return res.status(500).send();
     });
 };
 
