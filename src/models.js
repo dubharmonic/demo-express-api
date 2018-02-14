@@ -12,9 +12,9 @@ models.Person = util.sequelizeConnection.define('people', {
     validate: {
       len: {
         args: [2, 10],
-        msg: 'firstName must be between 2 and 10 characters in length'
-      }
-    }
+        msg: 'firstName must be between 2 and 10 characters in length',
+      },
+    },
   },
   lastName: {
     type: Sequelize.STRING,
@@ -23,22 +23,22 @@ models.Person = util.sequelizeConnection.define('people', {
     validate: {
       len: {
         args: [2, 10],
-        msg: 'lastName must be between 2 and 10 characters in length'
-      }
-    }
+        msg: 'lastName must be between 2 and 10 characters in length',
+      },
+    },
   },
   createdAt: {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW,
     allowNull: false,
-    field: 'created'
+    field: 'created',
   },
   updatedAt: {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW,
     allowNull: false,
-    field: 'updated'
-  }
+    field: 'updated',
+  },
 });
 
 module.exports = models;

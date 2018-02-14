@@ -1,6 +1,6 @@
 const assert = require('assert');
 const request = require('supertest');
-const factory = require('unionized').factory;
+const { factory } = require('unionized');
 
 const server = require('../src/server');
 
@@ -31,7 +31,7 @@ describe('Person RESTful endpoints', () => {
         .then(response => {
           assert.equal(
             response.body[0].message,
-            'people.firstName cannot be null'
+            'people.firstName cannot be null',
           );
           done();
         })
@@ -46,7 +46,7 @@ describe('Person RESTful endpoints', () => {
         .then(response => {
           assert.equal(
             response.body[0].message,
-            'firstName must be between 2 and 10 characters in length'
+            'firstName must be between 2 and 10 characters in length',
           );
           done();
         })
@@ -61,7 +61,7 @@ describe('Person RESTful endpoints', () => {
         .then(response => {
           assert.equal(
             response.body[0].message,
-            'firstName must be between 2 and 10 characters in length'
+            'firstName must be between 2 and 10 characters in length',
           );
           done();
         })
@@ -76,7 +76,7 @@ describe('Person RESTful endpoints', () => {
         .then(response => {
           assert.equal(
             response.body[0].message,
-            'people.firstName cannot be null'
+            'people.firstName cannot be null',
           );
           done();
         })
@@ -91,7 +91,7 @@ describe('Person RESTful endpoints', () => {
         .then(response => {
           assert.equal(
             response.body[0].message,
-            'lastName must be between 2 and 10 characters in length'
+            'lastName must be between 2 and 10 characters in length',
           );
           done();
         })
@@ -106,7 +106,7 @@ describe('Person RESTful endpoints', () => {
         .then(response => {
           assert.equal(
             response.body[0].message,
-            'lastName must be between 2 and 10 characters in length'
+            'lastName must be between 2 and 10 characters in length',
           );
           done();
         })
@@ -117,7 +117,7 @@ describe('Person RESTful endpoints', () => {
   describe('GET', () => {
     it('should receive a single person', done => {
       request(server)
-        .get('/people/' + personId)
+        .get(`/people/${personId}`)
         .expect('Content-Type', /json/)
         .expect(200)
         .then(response => {
@@ -137,7 +137,7 @@ describe('Person RESTful endpoints', () => {
         .then(response => {
           assert.equal(
             response.body[response.body.length - 1].firstName,
-            'Jim'
+            'Jim',
           );
           done();
         })
@@ -160,7 +160,7 @@ describe('Person RESTful endpoints', () => {
   describe('PUT', () => {
     it('should update a single person', done => {
       request(server)
-        .put('/people/' + personId)
+        .put(`/people/${personId}`)
         .send(personFactory.create({ firstName: 'Jimmy' }))
         .expect('Content-Type', /json/)
         .expect(200, done);
@@ -182,13 +182,13 @@ describe('Person RESTful endpoints', () => {
 
     it('should fail to update a person if firstName is missing', done => {
       request(server)
-        .put('/people/' + personId)
+        .put(`/people/${personId}`)
         .send(personFactory.create({ firstName: null }))
         .expect(400)
         .then(response => {
           assert.equal(
             response.body[0].message,
-            'people.firstName cannot be null'
+            'people.firstName cannot be null',
           );
           done();
         })
@@ -197,13 +197,13 @@ describe('Person RESTful endpoints', () => {
 
     it('should fail to update a person if firstName is too short', done => {
       request(server)
-        .put('/people/' + personId)
+        .put(`/people/${personId}`)
         .send(personFactory.create({ firstName: 'A' }))
         .expect(400)
         .then(response => {
           assert.equal(
             response.body[0].message,
-            'firstName must be between 2 and 10 characters in length'
+            'firstName must be between 2 and 10 characters in length',
           );
           done();
         })
@@ -212,13 +212,13 @@ describe('Person RESTful endpoints', () => {
 
     it('should fail to update a person if firstName is too long', done => {
       request(server)
-        .put('/people/' + personId)
+        .put(`/people/${personId}`)
         .send(personFactory.create({ firstName: '01234567890' }))
         .expect(400)
         .then(response => {
           assert.equal(
             response.body[0].message,
-            'firstName must be between 2 and 10 characters in length'
+            'firstName must be between 2 and 10 characters in length',
           );
           done();
         })
@@ -227,13 +227,13 @@ describe('Person RESTful endpoints', () => {
 
     it('should fail to update a person if lastName is missing', done => {
       request(server)
-        .put('/people/' + personId)
+        .put(`/people/${personId}`)
         .send(personFactory.create({ lastName: null }))
         .expect(400)
         .then(response => {
           assert.equal(
             response.body[0].message,
-            'people.lastName cannot be null'
+            'people.lastName cannot be null',
           );
           done();
         })
@@ -242,13 +242,13 @@ describe('Person RESTful endpoints', () => {
 
     it('should fail to update a person if lastName is too short', done => {
       request(server)
-        .put('/people/' + personId)
+        .put(`/people/${personId}`)
         .send(personFactory.create({ lastName: 'A' }))
         .expect(400)
         .then(response => {
           assert.equal(
             response.body[0].message,
-            'lastName must be between 2 and 10 characters in length'
+            'lastName must be between 2 and 10 characters in length',
           );
           done();
         })
@@ -257,13 +257,13 @@ describe('Person RESTful endpoints', () => {
 
     it('should fail to update a person if lastName is too long', done => {
       request(server)
-        .put('/people/' + personId)
+        .put(`/people/${personId}`)
         .send(personFactory.create({ lastName: '01234567890' }))
         .expect(400)
         .then(response => {
           assert.equal(
             response.body[0].message,
-            'lastName must be between 2 and 10 characters in length'
+            'lastName must be between 2 and 10 characters in length',
           );
           done();
         })
@@ -274,7 +274,7 @@ describe('Person RESTful endpoints', () => {
   describe('DELETE', () => {
     it('should delete a single person', done => {
       request(server)
-        .delete('/people/' + personId)
+        .delete(`/people/${personId}`)
         .expect(204, done);
     });
 

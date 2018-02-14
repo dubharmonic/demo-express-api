@@ -9,11 +9,12 @@ if (!process.env.DATABASE_URL) {
 
 util.sequelizeConnection = new Sequelize(process.env.DATABASE_URL);
 
+const createTable =
+  'CREATE TABLE IF NOT EXISTS people ( id bigserial primary key, first_name varchar(10) NOT NULL, last_name varchar(10) NOT NULL, created timestamp NOT NULL, updated timestamp NOT NULL );';
+
 util.initializeDatabase = () => {
   util.sequelizeConnection
-    .query(
-      'CREATE TABLE IF NOT EXISTS people ( id bigserial primary key, first_name varchar(10) NOT NULL, last_name varchar(10) NOT NULL, created timestamp NOT NULL, updated timestamp NOT NULL );'
-    )
+    .query(createTable)
     .then(() => {
       console.log('Table created!');
       process.exit(0);
