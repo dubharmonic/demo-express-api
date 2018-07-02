@@ -9,7 +9,9 @@
     "dev": "nodemon ./src/server.js;",
     "init-db": "node -e 'require(\"./src/util.js\").initializeDatabase()'",
     "lint": "eslint ./src/**/*.js ./test/**/*.js",
-    "snyk": "snyk test"
+    "snyk": "snyk test",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -33,8 +35,9 @@
     "prop-types": "^15.6.0",
     "react-router-props": "^1.0.2",
     "sequelize": "^4.11.1",
-    "snyk": "1.42.4",
+    "snyk": "^1.88.0",
     "supertest": "^3.0.0",
     "unionized": "^4.12.0"
-  }
+  },
+  "snyk": true
 }
