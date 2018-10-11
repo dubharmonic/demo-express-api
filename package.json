@@ -9,11 +9,13 @@
     "dev": "nodemon ./src/server.js;",
     "init-db": "node -e 'require(\"./src/util.js\").initializeDatabase()'",
     "lint": "eslint ./src/**/*.js ./test/**/*.js",
-    "snyk": "snyk test"
+    "snyk": "snyk test",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
-    "eslint": "^4.7.2",
+    "eslint": "^4.18.2",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.8.0",
@@ -26,15 +28,16 @@
     "istanbul": "^0.4.0",
     "lodash": "^4.17.4",
     "mocha": "^3.5.3",
-    "nodemon": "^1.12.1",
-    "nyc": "^11.2.1",
+    "nodemon": "^1.14.12",
+    "nyc": "^11.7.2",
     "pg": "^7.3.0",
     "prettier": "^1.10.2",
     "prop-types": "^15.6.0",
     "react-router-props": "^1.0.2",
-    "sequelize": "^4.11.1",
-    "snyk": "1.42.4",
+    "sequelize": "^4.33.4",
+    "snyk": "^1.103.1",
     "supertest": "^3.0.0",
     "unionized": "^4.12.0"
-  }
+  },
+  "snyk": true
 }
